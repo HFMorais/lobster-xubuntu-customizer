@@ -39,6 +39,7 @@ wget https://raw.githubusercontent.com/HFMorais/oh-my-zsh-purpleblood-theme/main
 cd ~
 sed -i 's/robbyrussell/purpleblood/g' .zshrc
 
+rm oh-my-zsh-install.sh
 
 ###################################################
 ## Firefox
@@ -62,11 +63,32 @@ sudo nala install firefox -y
 
 
 ###################################################
+## Themes
+###################################################
+mkdir ~/.themes
+mkdir ~/.icons
+
+# GTK / XFCE Theme
+wget -O dracula-theme-gtk.zip https://github.com/dracula/gtk/archive/master.zip
+unzip dracula-theme-gtk.zip -d ~/.themes/
+mv ~/.themes/gtk-master ~/.themes/Dracula
+xfconf-query -c xsettings -p /Net/ThemeName -s "Dracula"
+xfconf-query -c xfwm4 -p /general/theme -s "Dracula"
+rm dracula-theme-gtk.zip
+
+# Icons
+wget -O Dracula-Icons.zip https://github.com/dracula/gtk/files/5214870/Dracula.zip
+unzip Dracula-Icons.zip -d ~/.icons/
+xfconf-query -c xsettings -p /Net/IconThemeName -s "Dracula"
+gtk-update-icon-cache ~/.icons/Dracula/
+rm Dracula-Icons.zip
+
+# Change button order
+xfconf-query -c xfwm4 -p /general/button_layout -s "CMH|O"
+
+###################################################
 ## Final Touches
 ###################################################
-# Clean up
-rm oh-my-zsh-install.sh
-
 # Change default shell to zsh
 sudo chsh -s /bin/zsh $USER
 
