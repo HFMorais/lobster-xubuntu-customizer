@@ -79,19 +79,19 @@ mkdir ~/.themes
 mkdir ~/.icons
 
 # GTK / XFCE Theme
-wget -O dracula-theme-gtk.zip https://github.com/dracula/gtk/archive/master.zip
-unzip dracula-theme-gtk.zip -d ~/.themes/
+#wget -O Dracula-Gtk-Theme.zip https://github.com/dracula/gtk/archive/master.zip
+unzip files/Dracula-Gtk-Theme.zip -d ~/.themes/
 mv ~/.themes/gtk-master ~/.themes/Dracula
 xfconf-query -c xsettings -p /Net/ThemeName -s "Dracula"
 xfconf-query -c xfwm4 -p /general/theme -s "Dracula"
-rm dracula-theme-gtk.zip
+#rm Dracula-Gtk-Theme.zip
 
 # Icons
-wget -O Dracula-Icons.zip https://github.com/dracula/gtk/files/5214870/Dracula.zip
-unzip Dracula-Icons.zip -d ~/.icons/
+#wget -O Dracula-Icon-Theme.zip.zip https://github.com/dracula/gtk/files/5214870/Dracula.zip
+unzip Dracula-Icon-Theme.zip.zip -d ~/.icons/
 xfconf-query -c xsettings -p /Net/IconThemeName -s "Dracula"
 gtk-update-icon-cache ~/.icons/Dracula/
-rm Dracula-Icons.zip
+#rm Dracula-Icon-Theme.zip.zip
 
 # Cursors (2 cursors for different tastes)
 unzip files/Simp1e-Nord-Light.zip -d ~/.icons/
