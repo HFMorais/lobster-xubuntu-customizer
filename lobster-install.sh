@@ -22,7 +22,7 @@ sudo apt-get install nala -y
 sudo nala update
 
 # Preparing to install oh-my-zsh
-sudo nala install zsh git curl -y
+sudo nala install zsh git curl zip unzip -y
 
 ###################################################
 ## Oh My Zsh
@@ -59,8 +59,18 @@ Pin-Priority: 1001
 echo 'Unattended-Upgrade::Allowed-Origins:: "LP-PPA-mozillateam:${distro_codename}";' | sudo tee /etc/apt/apt.conf.d/51unattended-upgrades-firefox
 
 # Install
+sudo nala update
 sudo nala install firefox -y
 
+
+###################################################
+## Codium
+###################################################
+wget -qO - https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/raw/master/pub.gpg | gpg --dearmor | sudo dd of=/usr/share/keyrings/vscodium-archive-keyring.gpg
+echo 'deb [ signed-by=/usr/share/keyrings/vscodium-archive-keyring.gpg ] https://download.vscodium.com/debs vscodium main' | sudo tee /etc/apt/sources.list.d/vscodium.list
+
+sudo nala update
+sudo nala install codium -y
 
 ###################################################
 ## Themes
@@ -82,6 +92,12 @@ unzip Dracula-Icons.zip -d ~/.icons/
 xfconf-query -c xsettings -p /Net/IconThemeName -s "Dracula"
 gtk-update-icon-cache ~/.icons/Dracula/
 rm Dracula-Icons.zip
+
+# Cursors (2 cursors for different tastes)
+unzip files/Simp1e-Nord-Light.zip -d ~/.icons/
+unzip files/Breeze.zip -d ~/.icons/
+#xfconf-query -c xsettings -p /Gtk/CursorThemeName -s "Simp1e-Nord-Light"
+xfconf-query -c xsettings -p /Gtk/CursorThemeName -s "Breeze"
 
 # Change button order
 xfconf-query -c xfwm4 -p /general/button_layout -s "CMH|O"
