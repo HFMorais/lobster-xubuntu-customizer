@@ -16,18 +16,15 @@ sudo apt-get upgrade -y
 
 # Installing Nala
 sudo apt-get install nala -y
-
-# Nala configuration (fetch better mirrors)
-#sudo nala fetch
 sudo nala update
 
-# Preparing to install oh-my-zsh
-sudo nala install zsh git curl zip unzip -y
 
 ###################################################
 ## Oh My Zsh
 ###################################################
-#sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" --unattended
+# Preparing to install oh-my-zsh
+sudo nala install zsh git curl -y
+
 wget https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh
 mv install.sh oh-my-zsh-install.sh
 chmod +x oh-my-zsh-install.sh
@@ -40,6 +37,7 @@ cd ~
 sed -i 's/robbyrussell/purpleblood/g' .zshrc
 
 rm oh-my-zsh-install.sh
+
 
 ###################################################
 ## Firefox
@@ -72,6 +70,13 @@ echo 'deb [ signed-by=/usr/share/keyrings/vscodium-archive-keyring.gpg ] https:/
 sudo nala update
 sudo nala install codium -y
 
+
+###################################################
+## Add more utilities for the theming process
+###################################################
+sudo nala install zip unzip -y
+
+
 ###################################################
 ## Themes
 ###################################################
@@ -84,23 +89,24 @@ unzip files/Dracula-Gtk-Theme.zip -d ~/.themes/
 mv ~/.themes/gtk-master ~/.themes/Dracula
 xfconf-query -c xsettings -p /Net/ThemeName -s "Dracula"
 xfconf-query -c xfwm4 -p /general/theme -s "Dracula"
-#rm Dracula-Gtk-Theme.zip
 
 # Icons
-#wget -O Dracula-Icon-Theme.zip.zip https://github.com/dracula/gtk/files/5214870/Dracula.zip
-unzip Dracula-Icon-Theme.zip.zip -d ~/.icons/
-xfconf-query -c xsettings -p /Net/IconThemeName -s "Dracula"
-gtk-update-icon-cache ~/.icons/Dracula/
-#rm Dracula-Icon-Theme.zip.zip
+sudo dpkg -i files/mint-y-icons_1.6.1_all.deb
+xfconf-query -c xsettings -p /Net/IconThemeName -s "Mint-Y-Dark-Purple"
 
-# Cursors (2 cursors for different tastes)
-unzip files/Simp1e-Nord-Light.zip -d ~/.icons/
+# Cursors
 unzip files/Breeze.zip -d ~/.icons/
-#xfconf-query -c xsettings -p /Gtk/CursorThemeName -s "Simp1e-Nord-Light"
 xfconf-query -c xsettings -p /Gtk/CursorThemeName -s "Breeze"
 
 # Change button order
-xfconf-query -c xfwm4 -p /general/button_layout -s "CMH|O"
+xfconf-query -c xfwm4 -p /general/button_layout -s "O|HMC"
+
+
+###################################################
+## Missing utils
+###################################################
+sudo nala install feh mugshot xarchiver openjdk-11-jdk maven -y
+
 
 ###################################################
 ## Final Touches
