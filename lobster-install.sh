@@ -31,9 +31,7 @@ chmod +x oh-my-zsh-install.sh
 ./oh-my-zsh-install.sh --unattended
 
 # Get my theme
-cd .oh-my-zsh/themes
-wget https://raw.githubusercontent.com/HFMorais/oh-my-zsh-purpleblood-theme/main/purpleblood.zsh-theme
-cd ~
+wget -O .oh-my-zsh/themes/purpleblood.zsh-theme https://raw.githubusercontent.com/HFMorais/oh-my-zsh-purpleblood-theme/main/purpleblood.zsh-theme
 sed -i 's/robbyrussell/purpleblood/g' .zshrc
 
 rm oh-my-zsh-install.sh
@@ -114,4 +112,4 @@ sudo nala install feh mugshot xarchiver openjdk-11-jdk maven -y
 # Change default shell to zsh
 sudo chsh -s /bin/zsh $USER
 
-echo 'You have been lobstered. Enjoy!'
+echo 'You have been lobstered, please logout or restart your system. Enjoy!'
